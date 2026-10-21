@@ -1,0 +1,19 @@
+import csv
+
+alunos = [
+    ["Ana", 8.5],
+    ["Bruno", 6.0],
+    ["Carla", 9.2],
+]
+
+with open("alunos.csv", "w", newline="") as f:
+    escritor = csv.writer(f)
+    escritor.writerow(["nome", "nota"])
+    escritor.writerows(alunos)
+
+with open("alunos.csv", "r") as f:
+    leitor = csv.DictReader(f)
+    print("Alunos com nota >= 7:")
+    for linha in leitor:
+        if float(linha["nota"]) >= 7.0:
+            print(f"{linha['nome']}: {linha['nota']}")
